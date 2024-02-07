@@ -1,0 +1,18 @@
+name: "AppCenter Clone Configuration"
+description: "Clones a configuration on AppCenter from a source branch to a target branch"
+inputs:
+  appcenter-api-token:
+    description: "AppCenter API token, you can generate it from your profile page"
+    required: true
+  project-name:
+    description: "Name of project e.g: org/project_name"
+    required: true
+  source-branch:
+    description: "Name of the branch to be cloned"
+    required: true
+  target-branch:
+    description: "Name of the target branch on which the configuration is applied"
+    required: true
+runs:
+  using: "node20"
+  main: "index.js"
