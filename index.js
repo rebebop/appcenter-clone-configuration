@@ -3,9 +3,9 @@ const core = require("@actions/core");
 async function main() {
   try {
     const appCenterToken = core.getInput("appcenter-token");
-    const projectName = encodeURIComponent(core.getInput("project-name"));
+    const projectName = core.getInput("project-name");
     const sourceBranch = core.getInput("source-branch");
-    const targetBranch = core.getInput("target-branch");
+    const targetBranch = encodeURIComponent(core.getInput("target-branch"));
 
     const appCenterUrl = `https://api.appcenter.ms/v0.1/apps/${projectName}/branches/${targetBranch}/config`;
 
