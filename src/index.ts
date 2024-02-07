@@ -1,8 +1,8 @@
-const core = require("@actions/core");
+import * as core from "@actions/core";
 
-async function main() {
+async function main(): Promise<void> {
   try {
-    const appCenterToken = core.getInput("appcenter-token");
+    const appCenterToken = core.getInput("appcenter-api-token");
     const projectName = core.getInput("project-name");
     const sourceBranch = core.getInput("source-branch");
     const targetBranch = encodeURIComponent(core.getInput("target-branch"));
@@ -12,8 +12,8 @@ async function main() {
     const options = {
       method: "POST",
       headers: {
-        "content-type": "application/json",
-        "x-api-token": appCenterToken,
+        "Content-Type": "application/json",
+        "X-API-Token": appCenterToken,
       },
       body: JSON.stringify({
         cloneFromBranch: sourceBranch,
@@ -21,10 +21,10 @@ async function main() {
     };
 
     const response = await fetch(appCenterUrl, options);
-
     console.log(response);
   } catch (error) {
-    core.setFailed(error.message);
+    console.log(error);
+    core.setFailed(error as Error);
   }
 }
 
